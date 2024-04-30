@@ -70,7 +70,7 @@ func main() {
 			draw_vector(bounds, vecA, rl.Blue)
 			draw_axis(bounds, vecB, 10, rl.Blue)
 
-			draw_vector(bounds, vecA.Reflect(vecB), rl.Red)
+			draw_vector(bounds, vecA.Reflect(vecB.Normalized()), rl.Red)
 
 		},
 		InputFn: TwoVectorInput,
@@ -111,7 +111,7 @@ func draw_frame() {
 			}
 		}
 	})
-	mode_bounds := hl.Fill(rl.Vector2Zero(), rg.JustifyFill).ShrinkXYWH(4, 4, 4, 4)
+	mode_bounds := hl.Fill(0, rg.JustifyFill).ShrinkXYWH(4, 4, 4, 4)
 	draw_mode_background(mode_bounds)
 	if currentMode != nil {
 		currentMode.InputFn(mode_bounds)
