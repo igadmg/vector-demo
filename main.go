@@ -106,9 +106,13 @@ func draw_frame() {
 	rg.GroupBoxEx(hl.Pie(0.2).ShrinkXYWH(4, 8, 4, 4), "Sidebar", func(bounds rl.Rectangle) {
 		vl := rg.VerticalLayout(bounds, 6)
 		for _, mode := range modes {
+			if currentMode != nil && currentMode.Name == mode.Name {
+				rg.SetState(rg.STATE_FOCUSED)
+			}
 			if rg.Button(vl.Layout(rl.NewVector2(0, 32), rg.JustifyFill), mode.Name) {
 				currentMode = &mode
 			}
+			rg.SetState(rg.STATE_NORMAL)
 		}
 	})
 	mode_bounds := hl.Fill(0, rg.JustifyFill).ShrinkXYWH(4, 4, 4, 4)
